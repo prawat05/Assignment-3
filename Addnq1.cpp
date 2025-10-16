@@ -1,34 +1,24 @@
-/*1. Given an array A, find the nearest smaller element for every element A[i] in the array such that the 
-element has an index smaller than i*/
-#include<iostream>
-#include<stack>
+#include <iostream>
+#include <queue>
 using namespace std;
-int nearsmall(int a[] , int n)
-{
-    stack<int> s;
-    int G[n];
-    for(int i=0;i<n;i++)
-    {
-        while(s.top()!=-1 && s.top()>=a[i])
-        {
-            if(s.top()==-1)
-            {
-                G[i]=-1;
-            }
-            else
-            {
-                G[i]=s.top();
-            }
-        }
-        s.push(a[i]);
+
+void generateBinary(int n) {
+    queue<string> q;
+    q.push("1");
+
+    for (int i = 1; i <= n; i++) {
+        string s = q.front();
+        q.pop();
+        cout << s << " ";
+        q.push(s + "0");
+        q.push(s + "1");
     }
-    return G[n];
 }
-int main()
-{
-   int arr[]={4,5,2,10,8};
-   for(int i=0;i<5;i++)
-   {
-       cout<<nearsmall(arr,5)<<" "; 
-   } 
+
+int main() {
+    int n = 2;
+    generateBinary(n);
+    return 0;
+}
+
 }
